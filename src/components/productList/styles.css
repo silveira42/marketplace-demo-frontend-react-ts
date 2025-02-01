@@ -1,0 +1,71 @@
+@import '../../App.css';
+
+.load-more-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	background-color: var(--background);
+	transition: all .5s;
+	align-items: center;
+}
+
+.load-more-product-list {
+	margin: 10px 70px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+
+.load-more-product {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border: 0.5px solid var(--button-bg);
+	border-radius: 10px;
+	padding: 20px;
+	gap: 10px;
+}
+
+.load-more-product img {
+	width: 10rem;
+	height: 8rem;
+}
+
+/* title */
+.load-more-product h3 {
+	color: var(--text-primary);
+	width: 20vw;
+	max-height: 400px;
+	text-align: center;
+}
+
+.load-more-product-container {
+	display: flex;
+	flex-direction: row;
+	padding: 10px 10px;
+	align-content: center;
+	justify-content: space-between;
+}
+
+/* description */
+.load-more-product h4 {
+	color: var(--text-primary);
+}
+
+/* price */
+.load-more-product p {
+	color: var(--text-primary);
+}
+
+.load-more-button {
+	margin: 10px 10px;
+	padding: 10px 10px;
+	width: 10%;
+	background-color: var(--button-bg);
+	color: var(--button-text);
+	border-radius: 15px;
+	font-size: medium;
+	font-weight: 600;
+	cursor: pointer;
+}
