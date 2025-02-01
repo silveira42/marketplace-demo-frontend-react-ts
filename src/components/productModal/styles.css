@@ -1,0 +1,48 @@
+@import '../../App.css';
+
+.product {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border: 0.5px solid var(--button-bg);
+	border-radius: 10px;
+	padding: 20px;
+	gap: 10px;
+}
+
+.product img {
+	width: 10rem;
+	height: 8rem;
+}
+
+/* title */
+.product h3 {
+	color: var(--text-primary);
+	width: 20vw;
+	max-height: 400px;
+	text-align: center;
+}
+
+.product button {
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+.product-container {
+	display: flex;
+	flex-direction: row;
+	padding: 10px 10px;
+	align-content: center;
+	justify-content: space-between;
+}
+
+/* description */
+.product h4 {
+	color: var(--text-primary);
+}
+
+/* price */
+.product p {
+	color: var(--text-primary);
+}

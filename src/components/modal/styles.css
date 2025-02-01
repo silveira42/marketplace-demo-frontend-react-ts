@@ -1,0 +1,40 @@
+.modal-content {
+	background-color: var(--card-background);
+	height: fit-content;
+	width: fit-content;
+	padding: 50px;
+	color: var(--primary);
+	transition: background-color var(--transition);
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	border-radius: 30px;
+}
+
+.modal-background {
+	min-height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	margin-right: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-overlay {
+	display: flex;
+	flex-direction: row;
+	position: fixed;
+	min-height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+}

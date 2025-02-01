@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import './styles.css';
+import ProductModal from '../productModal';
 
 interface ProductListProps {
 	theme: string;
@@ -8,7 +9,8 @@ interface ProductListProps {
 	limit?: number;
 }
 
-interface Product {
+export interface Product {
+	id: string;
 	title: string;
 	price: number;
 	description: string;
@@ -30,6 +32,10 @@ export default function ProductList({
 	const [loading, setLoading] = React.useState(false);
 	const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 	const [loadButtonEnabled, setLoadButtonEnabled] = React.useState(true);
+	const [isModalOpen, setIsModalOpen] = React.useState(false);
+	const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(
+		null
+	);
 
 	function handleLoadMore() {
 		setSkip(skip + limit);
@@ -70,6 +76,11 @@ export default function ProductList({
 		}
 	}
 
+	const selectProduct = (product: Product) => {
+		setSelectedProduct(product);
+		setIsModalOpen(true);
+	};
+
 	React.useEffect(() => {
 		if (url !== '') fetchProducts(url, skip, limit);
 	}, [skip]);
@@ -88,7 +99,13 @@ export default function ProductList({
 			<div className='load-more-product-list'>
 				{products && products.length
 					? products.map((product, index) => (
-							<div key={index} className='load-more-product'>
+							<div
+								key={index}
+								className='load-more-product'
+								onClick={() => {
+									selectProduct(product);
+								}}
+							>
 								<img src={product.thumbnail} alt={product.description} />
 								<h3>{product.title}</h3>
 								<div className='load-more-product-container'>
@@ -108,6 +125,12 @@ export default function ProductList({
 				<button className='load-more-button' onClick={handleLoadMore}>
 					Load more data
 				</button>
+			) : null}
+			{isModalOpen && selectedProduct ? (
+				<ProductModal
+					product={selectedProduct}
+					onClose={() => setIsModalOpen(false)}
+				/>
 			) : null}
 		</div>
 	);

@@ -1,17 +1,27 @@
 :root {
 	--background: #ffffff;
+	--modal-background: rgba(0, 0, 0, 0.5);
+	--card-background: #9b9b9b;
 	--text-primary: #000000;
+	--primary: #333333;
 	--button-bg: #000000;
 	--button-text: #ffffff;
+	--divider: #e0e0e0;
 	--neutral: #999999;
+	--transition: 0.3s;
 }
 
 [data-theme='dark'] {
 	--background: #000000;
+	--modal-background: rgba(255, 255, 255, 0.5);
+	--card-background: #6d6d6d;
 	--text-primary: #ffffff;
+	--primary: #ffffff;
 	--button-bg: #ffffff;
 	--button-text: #000000;
+	--divider: #4d4d4d;
 	--neutral: #444444;
+	--transition: 0.3s;
 }
 
 .error {
