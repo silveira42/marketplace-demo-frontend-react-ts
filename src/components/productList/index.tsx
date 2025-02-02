@@ -45,9 +45,7 @@ export default function ProductList({
 		try {
 			setLoading(true);
 
-			const response = await fetch(
-				`${url}?limit=${limit}&skip=${skip}&select=title,price,description,thumbnail`
-			);
+			const response = await fetch(`${url}?limit=${limit}&skip=${skip}`);
 
 			const data: FetchProductsResponse = await response.json();
 

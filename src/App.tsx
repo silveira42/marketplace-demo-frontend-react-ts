@@ -7,7 +7,7 @@ function App() {
 		<div className='App'>
 			<ProductList
 				theme='dark'
-				url='https://dummyjson.com/products'
+				url='http://irisdemo:52773/api/v1/product'
 				limit={20}
 			/>
 		</div>
