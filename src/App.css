@@ -31,3 +31,14 @@
 .loading {
 	background-color: yellow;
 }
+
+.App {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	gap: 20px;
+	background-color: var(--background);
+	color: var(--text-primary);
+	transition: all 0.5s;
+	align-items: center;
+}

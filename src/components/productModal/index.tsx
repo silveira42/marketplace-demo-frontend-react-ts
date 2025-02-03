@@ -6,22 +6,54 @@ import './styles.css';
 type ProductModalProps = {
 	onClose: () => void;
 	product: Product;
+	baseUrl: string;
+};
+
+type Order = {
+	id: string;
+	customer: string;
+	deliveryCep: string;
+	productId: string;
+	quantity: number;
+	total: number;
 };
 
 export default function ProductModal(props: ProductModalProps) {
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [error, setError] = React.useState('');
+	const [customerName, setCustomerName] = React.useState('');
+	const [cep, setCep] = React.useState('');
+	const [quantity, setQuantity] = React.useState(1);
 
-	const onBuy = async (id: string) => {
+	const onBuy = async (e: React.FormEvent<HTMLFormElement>) => {
 		try {
-			const response = await fetch(`/api/product/buy/${id}`, {
+			e.preventDefault();
+
+			const order: Partial<Order> = {
+				customer: customerName,
+				deliveryCep: cep,
+				productId: props.product.id,
+				quantity: quantity,
+				total: props.product.price * quantity,
+			};
+
+			const response = await fetch(`${props.baseUrl}/order`, {
 				method: 'POST',
+				body: JSON.stringify(order),
 			});
 
 			const data = await response.json();
 
 			if (!response.ok) {
 				throw new Error(data.message);
+			} else {
+				if (response.status === 201) {
+					alert('Pedido realizado com sucesso!');
+				} else if (data.message) {
+					throw new Error('Erro ao criar pedido! ' + data.message);
+				} else {
+					throw new Error('Erro desconhecido ao criar pedido!');
+				}
 			}
 
 			props.onClose();
@@ -33,17 +65,34 @@ export default function ProductModal(props: ProductModalProps) {
 	};
 
 	return (
-		<Modal close={() => props.onClose()} isLoading={isLoading}>
-			{error && <div>{error}</div>}
-			<div className='product'>
+		<Modal
+			close={() => props.onClose()}
+			isLoading={isLoading}
+			className='product-modal'
+		>
+			<form className='product' onSubmit={e => onBuy(e)}>
 				<img src={props.product.thumbnail} alt={props.product.description} />
 				<h3>{props.product.title}</h3>
-				<div className='product-container'>
-					<h4>{props.product.description}</h4>
-					<p>${props.product.price}</p>
-				</div>
-				<button onClick={() => onBuy(props.product.id)}>Buy</button>
-			</div>
+				<p>{props.product.description}</p>
+				<p>${props.product.price}</p>
+				<label>Seu nome:</label>
+				<input
+					name='customerName'
+					value={customerName}
+					onChange={e => setCustomerName(e.target.value)}
+				/>
+				<label>CEP:</label>
+				<input name='cep' value={cep} onChange={e => setCep(e.target.value)} />
+				<label>Quantidade:</label>
+				<input
+					name='quantity'
+					type='number'
+					value={quantity}
+					onChange={e => setQuantity(parseInt(e.target.value))}
+				/>
+				<button type='submit'>Confirm</button>
+			</form>
+			{error && <div>{error}</div>}
 		</Modal>
 	);
 }

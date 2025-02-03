@@ -45,7 +45,9 @@ export default function ProductList({
 		try {
 			setLoading(true);
 
-			const response = await fetch(`${url}?limit=${limit}&skip=${skip}`);
+			const response = await fetch(
+				`${url}/product?limit=${limit}&skip=${skip}`
+			);
 
 			const data: FetchProductsResponse = await response.json();
 
@@ -97,19 +99,18 @@ export default function ProductList({
 			<div className='load-more-product-list'>
 				{products && products.length
 					? products.map((product, index) => (
-							<div
-								key={index}
-								className='load-more-product'
-								onClick={() => {
-									selectProduct(product);
-								}}
-							>
+							<div key={index} className='load-more-product'>
 								<img src={product.thumbnail} alt={product.description} />
 								<h3>{product.title}</h3>
-								<div className='load-more-product-container'>
-									<h4>{product.description}</h4>
-									<p>${product.price}</p>
-								</div>
+								<p>{product.description}</p>
+								<h2>R${product.price}</h2>
+								<button
+									onClick={() => {
+										selectProduct(product);
+									}}
+								>
+									Buy
+								</button>
 							</div>
 					  ))
 					: null}
@@ -128,6 +129,7 @@ export default function ProductList({
 				<ProductModal
 					product={selectedProduct}
 					onClose={() => setIsModalOpen(false)}
+					baseUrl={url}
 				/>
 			) : null}
 		</div>

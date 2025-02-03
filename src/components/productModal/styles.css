@@ -1,5 +1,12 @@
 @import '../../App.css';
 
+.product-modal {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
 .product {
 	display: flex;
 	flex-direction: column;
