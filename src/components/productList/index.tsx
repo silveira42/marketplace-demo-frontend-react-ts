@@ -52,11 +52,11 @@ export default function ProductList({
 			const data: FetchProductsResponse = await response.json();
 
 			if (!data) {
-				throw new Error('Server error. No data found.');
+				throw new Error('Erro no servidor. Nenhum produto encontrado.');
 			}
 
 			if (!data.products || !data.products.length) {
-				throw new Error('Server error. No data found.');
+				throw new Error('Erro no servidor. Nenhum produto encontrado.');
 			}
 
 			const newProducts = data.products;
@@ -88,8 +88,8 @@ export default function ProductList({
 	if (errorMessage !== null) {
 		return (
 			<div className='load-container'>
-				<h3 className='error'>Error. Please reload the page.</h3>
-				<p className='error'>Details: {errorMessage}</p>
+				<h3 className='error'>Erro. Por favor recarregue a página.</h3>
+				<p className='error'>Detalhes: {errorMessage}</p>
 			</div>
 		);
 	}
@@ -109,7 +109,7 @@ export default function ProductList({
 										selectProduct(product);
 									}}
 								>
-									Buy
+									Comprar
 								</button>
 							</div>
 					  ))
@@ -117,12 +117,12 @@ export default function ProductList({
 			</div>
 			{loading ? (
 				<div className='load-container'>
-					<h3 className='loading'>Loading... Please wait</h3>
+					<h3 className='loading'>Carregando... Aguarde por favor.</h3>
 				</div>
 			) : null}
 			{loadButtonEnabled ? (
 				<button className='load-more-button' onClick={handleLoadMore}>
-					Load more data
+					Carregar mais
 				</button>
 			) : null}
 			{isModalOpen && selectedProduct ? (

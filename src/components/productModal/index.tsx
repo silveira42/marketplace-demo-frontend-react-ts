@@ -90,7 +90,7 @@ export default function ProductModal(props: ProductModalProps) {
 					value={quantity}
 					onChange={e => setQuantity(parseInt(e.target.value))}
 				/>
-				<button type='submit'>Confirm</button>
+				<button type='submit'>Confirmar</button>
 			</form>
 			{error && <div>{error}</div>}
 		</Modal>
