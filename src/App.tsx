@@ -6,7 +6,11 @@ function App() {
 	return (
 		<div className='App' data-theme='dark'>
 			<h1>Marketplace</h1>
-			<ProductList theme='dark' url='http://irisdemo:52773/api/v1' limit={20} />
+			<ProductList
+				theme='dark'
+				url='https://irisdemo.thesilver.com.br/api/v1'
+				limit={20}
+			/>
 		</div>
 	);
 }

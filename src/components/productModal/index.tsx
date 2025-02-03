@@ -12,7 +12,7 @@ type ProductModalProps = {
 type Order = {
 	id: string;
 	customer: string;
-	deliveryCep: string;
+	deliveryCEP: string;
 	productId: string;
 	quantity: number;
 	total: number;
@@ -31,7 +31,7 @@ export default function ProductModal(props: ProductModalProps) {
 
 			const order: Partial<Order> = {
 				customer: customerName,
-				deliveryCep: cep,
+				deliveryCEP: cep,
 				productId: props.product.id,
 				quantity: quantity,
 				total: props.product.price * quantity,
@@ -47,7 +47,7 @@ export default function ProductModal(props: ProductModalProps) {
 			if (!response.ok) {
 				throw new Error(data.message);
 			} else {
-				if (response.status === 201) {
+				if (response.status === 201 || response.status === 200) {
 					alert('Pedido realizado com sucesso!');
 				} else if (data.message) {
 					throw new Error('Erro ao criar pedido! ' + data.message);
